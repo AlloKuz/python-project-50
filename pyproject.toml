@@ -10,8 +10,15 @@ repository = "https://github.com/remortalite/python-project-50"
 [tool.poetry.dependencies]
 python = "^3.12"
 
+
 [tool.poetry.scripts]
 gendiff = "gendiff.scripts.gendiff:main"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.1.0"
+pytest-cov = "^5.0.0"
+pytest = "^8.2.2"
 
 [build-system]
 requires = ["poetry-core"]
