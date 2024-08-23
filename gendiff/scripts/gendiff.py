@@ -1,19 +1,12 @@
-import argparse
+from gendiff.utils.parse_file import parse_file
+from gendiff.utils.cli import parse_args
+from gendiff.utils.stringify import stringify
 
 
 def main():
-    parser = argparse.ArgumentParser(
-                prog="gendiff",
-                description="Compares two configuration files and shows a difference.")
-    parser.add_argument("first_file", type=str)
-    parser.add_argument("second_file", type=str)
-    parser.add_argument("-f", "--format",
-                        metavar="FORMAT",
-                        type=str,
-                        choices=["plain", "json"],
-                        help="set format of output")
+    args = parse_args()
 
-    args = parser.parse_args()
+    print(stringify(parse_file("example/file1.json")))
 
 
 if __name__ == "__main__":
