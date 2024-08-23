@@ -4,10 +4,14 @@ version = "0.1.0"
 description = ""
 authors = ["AlloKuz <a.o.kuzmin.rus@gmail.com>"]
 readme = "README.md"
+packages = [{ include = "gendiff" }]
+repository = "https://github.com/remortalite/python-project-50"
 
 [tool.poetry.dependencies]
 python = "^3.12"
 
+[tool.poetry.scripts]
+gendiff = "gendiff.scripts.gendiff:main"
 
 [build-system]
 requires = ["poetry-core"]
