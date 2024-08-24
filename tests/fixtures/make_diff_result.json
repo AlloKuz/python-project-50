@@ -1,0 +1,7 @@
+[
+  {"name": "host", "state": "changed", "value": ["hexlet.io", "hexlet.io"]},
+  {"name": "verbose", "state": "added", "value": true},
+  {"name": "follow", "state": "removed", "value": false},
+  {"name": "proxy", "state": "removed", "value": "123.234.53.22"},
+  {"name": "timeout", "state": "changed", "value": [50, 20]}
+]
