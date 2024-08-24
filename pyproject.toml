@@ -8,7 +8,7 @@ packages = [{ include = "gendiff" }]
 repository = "https://github.com/remortalite/python-project-50"
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11"
 
 
 [tool.poetry.scripts]
