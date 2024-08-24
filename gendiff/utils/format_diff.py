@@ -19,6 +19,8 @@ def sort_diff(data_dict):
 
 
 def format_diff_json(data):
+    result = {}
+
     for item in data:
         state_value = item["state"]
         match state_value:
