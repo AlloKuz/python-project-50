@@ -44,3 +44,31 @@ def test_format_diff():
     }
     assert format_diff(data) == result
     assert format_diff({}) == {}
+
+
+def test_format_diff_plain():
+    data = [{'name': 'one', 'state': 'added', 'value': 1},
+            {'name': 'qwerty', 'state': 'removed', 'value': 2},
+            {'name': 'nest', 'state': 'nested',
+                             'children': [
+                                {"name": "three",
+                                 "state": "added",
+                                 "value": 1},
+                                {"name": "abra",
+                                 "state": "added",
+                                 "value": {
+                                    "three": "solo"
+                                 }}
+                             ]},
+            {'name': 'two', 'state': 'removed', 'value': 2},
+            {'name': 'three', 'state': 'changed', 'value': [3, 4]}]
+
+    result = ["Property 'nest.abra' was added with value: [complex value]",
+              "Property 'nest.three' was added with value: 1",
+              "Property 'one' was added with value: 1",
+              "Property 'qwerty' was removed",
+              "Property 'three' was updated. From 3 to 4",
+              "Property 'two' was removed"]
+
+    assert format_diff(data, type="plain") == result
+    assert format_diff({}) == {}

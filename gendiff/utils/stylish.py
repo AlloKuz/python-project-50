@@ -1,7 +1,7 @@
 from itertools import chain
 
 
-def stringify(data, indent_symbol=" ", indent_size=4):
+def stylish(data, indent_symbol=" ", indent_size=4):
     def iter_(current_data, level=1):
         if not isinstance(current_data, dict):
             return f"{current_data}"
@@ -19,3 +19,12 @@ def stringify(data, indent_symbol=" ", indent_size=4):
         return string
 
     return f"{{\n{iter_(data)}}}"
+
+
+def stylish_plain(data):
+    if not data:
+        return
+    result_str = ""
+    for el in data:
+        result_str += f"{el}\n"
+    return result_str
