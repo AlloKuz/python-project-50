@@ -8,12 +8,24 @@ JSON_WORDS = {
 }
 
 
+def is_dict(data):
+    return isinstance(data, dict)
+
+
+def prepare_value(value):
+    if is_dict(value):
+        return "{"
+    elif isinstance(value, bool) or value is None:
+        return JSON_WORDS[value]
+    return value
+
+
 def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
 
     def iter_(current_data, level=1):
         indent_size_counted = level * indent_size - shift_size
 
-        if not isinstance(current_data, dict):
+        if not is_dict(current_data):
             return current_data
 
         # final list with lines of changes
@@ -23,28 +35,24 @@ def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
         for key in current_data.keys():
             indent = indent_size_counted * indent_symbol
             key = key
-            if isinstance(current_data[key], dict):
-                value = "{"
-            else:
-                value = current_data[key]
-                if value in JSON_WORDS:
-                    value = JSON_WORDS[value]
+            value = prepare_value(current_data[key])
+
             result_str = f"{indent}{key}: {value}"
             result.append(result_str)
 
-            if isinstance(current_data[key], dict):
-                nested_result = iter_(current_data[key], level + 1)
-                if nested_result:
-                    result.extend(nested_result)
+            if not is_dict(current_data[key]):
+                continue
 
-                result.append(f"{indent}{shift_size * indent_symbol}}}")
+            nested_result = iter_(current_data[key], level + 1)
+            if nested_result:
+                result.extend(nested_result)
+
+            result.append(f"{indent}{shift_size * indent_symbol}}}")
 
         return result
 
     result = iter_(data)
-    if result:
-        return ["{"] + result + ["}"]
-    return data
+    return data if not result else ["{" + result + "}"]
 
 
 def format(data, raw=False):
