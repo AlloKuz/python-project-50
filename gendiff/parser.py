@@ -13,7 +13,7 @@ def parse(data, format="json"):
     return None
 
 
-def parse_by_filename(filename):
+def get_content(filename):
 
     ext = os.path.splitext(filename)[-1].replace(".", "")
 
