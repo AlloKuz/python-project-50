@@ -1,8 +1,8 @@
-from gendiff.utils.parse_file import parse_file
+from gendiff.parse_file import parse_file
 from gendiff.formatters import (stylish_formatter,
                                 plain_formatter,
                                 json_formatter)
-from gendiff.utils.make_diff import make_diff
+from gendiff.make_diff import make_diff
 
 
 def generate_diff(file_path1,

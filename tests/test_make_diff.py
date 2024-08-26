@@ -1,5 +1,5 @@
-from gendiff.utils.make_diff import make_diff
-from gendiff.utils.parse_file import parse_file
+from gendiff.make_diff import make_diff
+from gendiff.parse_file import parse_file
 from gendiff.formatters import stylish_formatter
 
 import json

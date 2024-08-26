@@ -1,4 +1,4 @@
-from gendiff.utils.parse_file import parse_file
+from gendiff.parse_file import parse_file
 
 import pytest
 
