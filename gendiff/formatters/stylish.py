@@ -10,30 +10,49 @@ JSON_WORDS = {
 }
 
 def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
+    print(f"{data=}")
     def iter_(current_data, level=1):
+        indent_size_counted = level * indent_size - shift_size
+
         if not isinstance(current_data, dict):
-            return f"{current_data}"
+            return current_data
 
-        strings = []
+        # final list with lines of changes
+        result = []
 
-        for el in chain(current_data):
-            indent = (level * indent_size - shift_size) * indent_symbol
-            strings.append(f"{indent}{el}: ")
-            if isinstance(current_data[el], dict):
-                strings[-1] += "{"
-                strings.append(iter_(current_data[el], level + 1))
-                strings.append(f"{indent}")
-                strings[-1] += shift_size * indent_symbol + "}"
+        # prepare dict
+        for key in current_data.keys():
+            indent = indent_size_counted * indent_symbol
+            key = key
+            if isinstance(current_data[key], dict):
+                value = "{"
             else:
-                if current_data[el] is None or isinstance(current_data[el], bool):
-                    strings[-1] += f"{JSON_WORDS[current_data[el]]}"
-                else:
-                    strings[-1] += f"{current_data[el]}"                    
-        return '\n'.join(strings) if data else data
-    return f"{{\n{iter_(data)}\n}}" if data else data
+                value = current_data[key]
+                if value in JSON_WORDS:
+                    value = JSON_WORDS[value]
+            result_str = f"{indent}{key}: {value}"
+            result.append(result_str)
+
+            if isinstance(current_data[key], dict):
+                nested_result = iter_(current_data[key], level + 1)
+                if nested_result:
+                    result.extend(nested_result)
+
+                result.append(f"{indent}{shift_size * indent_symbol}}}")
+
+        return result
+
+    result = iter_(data)
+    if result:
+        return ["{"] + result + ["}"]
+    return data
 
 
 def format(data, raw=False):
     prepared_data = make_json_diff(data)
+
+    print(_format_stylish(prepared_data))
+
+    print('\n'.join(_format_stylish(prepared_data)))
 
     return prepared_data if raw else _format_stylish(prepared_data)
