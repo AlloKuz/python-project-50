@@ -1,4 +1,4 @@
-from gendiff.parse_file import parse_file
+from gendiff.parse import parse_by_filename
 from gendiff.formatters import (stylish_formatter,
                                 plain_formatter,
                                 json_formatter)
@@ -9,8 +9,8 @@ def generate_diff(file_path1,
                   file_path2,
                   output_type=None,
                   formatter=None):
-    file1_data = parse_file(file_path1)
-    file2_data = parse_file(file_path2)
+    file1_data = parse_by_filename(file_path1)
+    file2_data = parse_by_filename(file_path2)
 
     if not formatter:
         match output_type:

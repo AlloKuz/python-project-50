@@ -1,5 +1,4 @@
 from .utils.make_json_diff import make_json_diff
-from .stylish import _format_stylish
 
 import json
 

@@ -1,5 +1,5 @@
 from gendiff.make_diff import make_diff
-from gendiff.parse_file import parse_file
+from gendiff.parse import parse_by_filename
 from gendiff.formatters import stylish_formatter
 
 import json
@@ -36,25 +36,25 @@ def make_format_diff_str():
 
 @pytest.fixture
 def nested_data_1():
-    result = parse_file("tests/fixtures/make_diff_nested_1.yaml")
+    result = parse_by_filename("tests/fixtures/make_diff_nested_1.yaml")
     return result
 
 
 @pytest.fixture
 def nested_data_2():
-    result = parse_file("tests/fixtures/make_diff_nested_2.yaml")
+    result = parse_by_filename("tests/fixtures/make_diff_nested_2.yaml")
     return result
 
 
 @pytest.fixture
 def nested_data_expected_dict():
-    result = parse_file("tests/fixtures/nested_data_expected_dict.json")
+    result = parse_by_filename("tests/fixtures/nested_data_expected_dict.json")
     return result
 
 
 @pytest.fixture
 def nested_data_expected_diff():
-    result = parse_file("tests/fixtures/nested_data_expected_diff.json")
+    result = parse_by_filename("tests/fixtures/nested_data_expected_diff.json")
     return result
 
 
