@@ -3,11 +3,17 @@ from .utils.make_json_diff import make_json_diff
 from itertools import chain
 
 
+CENSORED_JSON_DICT = {
+    True: "true",
+    False: "false",
+    None: "null"
+}
+
+
 def _format_stylish(data, indent_symbol=" ", indent_size=4):
     def iter_(current_data, level=1):
         if not isinstance(current_data, dict):
             return f"{current_data}"
-
 
         strings = []
 
@@ -19,7 +25,10 @@ def _format_stylish(data, indent_symbol=" ", indent_size=4):
                 strings.append(f"{indent_symbol * indent_size * level}")
                 strings[-1] += "}"
             else:
-                strings[-1] += f"{current_data[el]}"
+                if isinstance(current_data[el], bool):
+                    strings[-1] += f"{CENSORED_JSON_DICT[current_data[el]]}"
+                else:
+                    strings[-1] += f"{current_data[el]}"
         return '\n'.join(strings) if data else data
     return f"{{\n{iter_(data)}\n}}" if data else data
 
