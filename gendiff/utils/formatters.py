@@ -46,12 +46,17 @@ def _get_name(name, path):
     if not path:
         return name
     return f"{path}.{name}"
+
+
 def replace_complex_with_text(value):
     if isinstance(value, (dict, list)):
         return "[complex value]"
     return json.dumps(value)
+
+
 def format_diff_plain(data, path=''):
     result = []
+
     templates_dict = {
         "added":
             "Property '{name}' was added with value: {value}",
@@ -60,16 +65,20 @@ def format_diff_plain(data, path=''):
         "updated":
             "Property '{name}' was updated. From {old_value} to {new_value}"
     }
+
     for item in data:
         item_string = ""
         state_value = item["state"]
+
         match state_value:
+
             case "added":
                 item_name = _get_name(item["name"], path)
                 value = replace_complex_with_text(item["value"])
                 item_string = templates_dict["added"].format(name=item_name,
                                                              value=value)
                 result.append(item_string)
+
             case "removed":
                 item_name = _get_name(item["name"], path)
                 value = replace_complex_with_text(item["value"])
@@ -77,6 +86,7 @@ def format_diff_plain(data, path=''):
                 item_string = temp.format(name=item_name,
                                           value=value)
                 result.append(item_string)
+
             case "changed":
                 item_name = _get_name(item["name"], path)
                 old_value = replace_complex_with_text(item["value"][0])
@@ -86,6 +96,7 @@ def format_diff_plain(data, path=''):
                                           old_value=old_value,
                                           new_value=new_value)
                 result.append(item_string)
+
             case "nested":
                 item_name = _get_name(item["name"], path)
                 result.extend(format_diff_plain(item["children"],
