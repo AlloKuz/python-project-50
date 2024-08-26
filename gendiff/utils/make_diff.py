@@ -1,10 +1,13 @@
-from gendiff.utils.format_diff import format_diff
-
-
 def _prepare_data_item(name, state, value, is_nested=False):
     return {"name": name,
             "state": state,
             "children" if is_nested else "value": value}
+
+
+def _is_nested(key, data1, data2):
+    if all(isinstance(x.get(key), dict) for x in (data1, data2)):
+        return True
+    return False
 
 
 def make_diff(data1, data2):
@@ -16,14 +19,10 @@ def make_diff(data1, data2):
 
     nested_keys = set()
 
-    def _sort_key(data):
-        return data['name'], (0 if data['state'] == "removed" else 1)
-
     for key in all_keys:
         # check if nested
-        if key in all_keys:
-            if all(isinstance(x.get(key), dict) for x in (data1, data2)):
-                nested_keys.add(key)
+        if _is_nested(key, data1, data2):
+            nested_keys.add(key)
 
         if key in all_keys - nested_keys:
             data_by_status = {
@@ -52,9 +51,5 @@ def make_diff(data1, data2):
                                                   "nested",
                                                   new_data,
                                                   is_nested=True))
-    result_data.sort(key=_sort_key)
+
     return result_data
-
-
-def make_and_format_diff(data1, data2):
-    return format_diff(make_diff(data1, data2))
