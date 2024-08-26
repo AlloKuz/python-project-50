@@ -1,0 +1,6 @@
+Property 'five.nested' was removed
+Property 'five.six' was added with value: [complex value]
+Property 'four' was removed
+Property 'nested.three' was updated. From 3 to 5
+Property 'seven' was added with value: 7
+Property 'two' was updated. From 2 to 3
