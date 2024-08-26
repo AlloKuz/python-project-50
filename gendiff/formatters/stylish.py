@@ -9,7 +9,6 @@ JSON_WORDS = {
 
 
 def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
-    print(f"{data=}")
 
     def iter_(current_data, level=1):
         indent_size_counted = level * indent_size - shift_size
