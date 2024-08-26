@@ -83,5 +83,6 @@ def format(data, raw=False):
 
     result_str = ""
     for el in prepared_data:
-        result_str += f"{el}\n"
-    return result_str
+        if el:
+            result_str += f"{el}\n"
+    return result_str.rstrip()
