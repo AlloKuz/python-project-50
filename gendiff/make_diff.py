@@ -46,4 +46,6 @@ def make_diff(data1, data2):
 
         result_data.append(new_data)
 
+    result_data = sorted(result_data, key=lambda x: x['name'])
+
     return result_data
