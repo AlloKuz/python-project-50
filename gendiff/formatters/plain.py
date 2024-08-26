@@ -37,17 +37,20 @@ def _format_diff(data, *, path=''):
         item_string = ""
         state_value = item["state"]
 
+        name = item["name"]
+
         match state_value:
 
             case "added":
-                item_name = _get_name(item["name"], path)
+                item_name = f"{path}.{name}" if path else f"{name}"
                 value = _prepare_value(item["value"])
                 item_string = templates_dict["added"].format(name=item_name,
                                                              value=value)
                 result.append(item_string)
 
             case "removed":
-                item_name = _get_name(item["name"], path)
+                item_name = f"{path}.{name}" if path else f"{name}"
+                # item_name = _get_name(item["name"], path)
                 value = _prepare_value(item["value"])
                 temp = templates_dict["removed"]
                 item_string = temp.format(name=item_name,
@@ -55,7 +58,8 @@ def _format_diff(data, *, path=''):
                 result.append(item_string)
 
             case "changed":
-                item_name = _get_name(item["name"], path)
+                item_name = f"{path}.{name}" if path else f"{name}"
+                # item_name = _get_name(item["name"], path)
                 old_value = _prepare_value(item["value"][0])
                 new_value = _prepare_value(item["value"][1])
                 temp = templates_dict["updated"]
@@ -65,7 +69,8 @@ def _format_diff(data, *, path=''):
                 result.append(item_string)
 
             case "nested":
-                item_name = _get_name(item["name"], path)
+                item_name = f"{path}.{name}" if path else f"{name}"
+                # item_name = _get_name(item["name"], path)
 
                 result.extend(_format_diff(item["children"],
                                            path=item_name))
