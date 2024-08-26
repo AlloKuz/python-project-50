@@ -12,11 +12,13 @@ def is_dict(data):
     return isinstance(data, dict)
 
 
-def prepare_value(value):
+def value_to_str(value):
     if is_dict(value):
         return "{"
-    elif isinstance(value, bool) or value is None:
-        return JSON_WORDS[value]
+    elif isinstance(value, bool):
+        return str(value).lower()
+    elif value is None:
+        return "null"
     return value
 
 
@@ -35,7 +37,7 @@ def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
         for key in current_data.keys():
             indent = indent_size_counted * indent_symbol
             key = key
-            value = prepare_value(current_data[key])
+            value = value_to_str(current_data[key])
 
             result_str = f"{indent}{key}: {value}"
             result.append(result_str)
