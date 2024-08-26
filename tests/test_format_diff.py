@@ -18,13 +18,6 @@ def test_sort_diff_data_sorted():
     return data
 
 
-# def test_get_item_name():
-#     assert _get_item_name("test", prefix="+") == "+ test"
-#     assert _get_item_name("test") == "  test"
-#     assert _get_item_name("test", prefix="") == " test"
-#     assert _get_item_name("", prefix="+") == "+ "
-    
-
 def test_format_diff():
     data = [{'name': 'one', 'state': 'added', 'value': 1},
             {'name': 'two', 'state': 'removed', 'value': 2},
