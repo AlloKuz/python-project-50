@@ -37,7 +37,7 @@ def test_format_diff():
         "- two": 2,
     }
     assert stylish_formatter(data, raw=True) == result
-    assert stylish_formatter({}) == {}
+    assert stylish_formatter({}) == ''
 
 
 def test_format_diff_plain():

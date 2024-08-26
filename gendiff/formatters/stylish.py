@@ -1,7 +1,5 @@
 from .utils.make_json_diff import make_json_diff
 
-from itertools import chain
-
 
 JSON_WORDS = {
     True: "true",
@@ -9,8 +7,10 @@ JSON_WORDS = {
     None: "null"
 }
 
+
 def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
     print(f"{data=}")
+
     def iter_(current_data, level=1):
         indent_size_counted = level * indent_size - shift_size
 
@@ -51,8 +51,4 @@ def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
 def format(data, raw=False):
     prepared_data = make_json_diff(data)
 
-    print(_format_stylish(prepared_data))
-
-    print('\n'.join(_format_stylish(prepared_data)))
-
-    return prepared_data if raw else _format_stylish(prepared_data)
+    return prepared_data if raw else '\n'.join(_format_stylish(prepared_data))
