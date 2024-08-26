@@ -52,10 +52,10 @@ def _format_stylish(data, indent_symbol=" ", indent_size=4, shift_size=2):
         return result
 
     result = iter_(data)
-    return data if not result else ["{" + result + "}"]
+    return "{\n" + "\n".join(result) + "\n}" if result else ""
 
 
 def format(data, raw=False):
     prepared_data = make_json_diff(data)
 
-    return prepared_data if raw else '\n'.join(_format_stylish(prepared_data))
+    return prepared_data if raw else _format_stylish(prepared_data)

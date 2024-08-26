@@ -14,16 +14,4 @@ def generate_diff(file_path1,
     result = format_data(make_diff(file1_data, file2_data),
                          output_type,
                          formatter)
-
-    # if not formatter:
-    #     match output_type:
-    #         case "json":
-    #             formatter = json_formatter
-    #         case "plain":
-    #             formatter = plain_formatter
-    #         case _:
-    #             formatter = stylish_formatter
-
-    # result = formatter(make_diff(file1_data, file2_data))
-
     return result
