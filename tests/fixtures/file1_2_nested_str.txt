@@ -1,0 +1,17 @@
+{
+    five: {
+      - nested: 5
+      + six: {
+            nested: 5
+        }
+    }
+  - four: 4
+    nested: {
+      - three: 3
+      + three: 5
+    }
+    one: 1
+  + seven: 7
+  - two: 2
+  + two: 3
+}

@@ -5,16 +5,23 @@ import json
 
 
 @pytest.fixture
-def nested_data_expected_dict():
-    with open("tests/fixtures/nested_data_expected_dict.json") as f:
+def file1_2_nested_diff():
+    with open("tests/fixtures/file1_2_nested_diff.json") as f:
         data = json.load(f)
     return data
 
 
 @pytest.fixture
-def nested_data_expected_diff():
+def file1_2_nested_result():
     with open("tests/fixtures/nested_data_expected_diff.json") as f:
         data = json.load(f)
+    return data
+
+
+@pytest.fixture
+def file1_2_nested_str():
+    with open("tests/fixtures/file1_2_nested_str.txt") as f:
+        data = f.read()
     return data
 
 
@@ -50,8 +57,11 @@ def test_prepare_value():
     assert value_to_str(value) == expected
 
 
-def test_format(nested_data_expected_diff, nested_data_expected_dict):
-    value = nested_data_expected_diff
-    expected = nested_data_expected_dict
-    raw = True
-    assert format(value, raw=raw) == expected
+def test_format(file1_2_nested_diff, file1_2_nested_str):
+    data = file1_2_nested_diff
+    result = format(data)
+    assert result == file1_2_nested_str
+
+    data = {}
+    result = format(data)
+    assert result == ""
