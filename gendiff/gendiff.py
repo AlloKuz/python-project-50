@@ -1,5 +1,5 @@
-from gendiff.parse import parse_by_filename
-from gendiff.make_diff import make_diff
+from gendiff.parser import parse_by_filename
+from gendiff.diff_maker import make_diff
 from gendiff.formatters import format_data
 
 

@@ -1,4 +1,4 @@
-from gendiff.make_diff import make_diff
+from gendiff.diff_maker import make_diff
 
 import pytest
 import yaml
