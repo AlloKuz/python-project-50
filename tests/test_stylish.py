@@ -25,11 +25,11 @@ def file1_2_nested_str():
     return data
 
 
-@pytest.mark.parametrize("test_input,expected", [({"name": "value"}, "{"),
+@pytest.mark.parametrize("test_input,expected", [({"name": "value"}, ""),
                                                  (True, "true"),
                                                  (False, "false"),
                                                  (None, "null"),
-                                                 ({}, "{")])
+                                                 ({}, "")])
 def test_prepare_value(test_input, expected):
     assert prepare_value(test_input) == expected
 

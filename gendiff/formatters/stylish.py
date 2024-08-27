@@ -5,7 +5,7 @@ SHIFT_SIZE = 2
 
 def prepare_value(value):
     if isinstance(value, dict):
-        return "{"
+        return ""
     elif isinstance(value, bool):
         return str(value).lower()
     elif value is None:
@@ -35,7 +35,9 @@ def iter_(current_data, level=1):
 
             nested_result = iter_(current_data[key],
                                   level + 1)
+
             if nested_result:
+                result[-1] += "{"
                 result.extend(nested_result)
 
             result.append(f"{indent}{SHIFT_SIZE * INDENT_SYMBOL}}}")
