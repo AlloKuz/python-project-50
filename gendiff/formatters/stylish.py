@@ -20,8 +20,6 @@ def prepare_value(value, *, level=1):
             closing_bracket_str = f"{indent[:-SHIFT_SIZE]}}}"
 
             result[-1] += "{"
-            print(f"{nested_result=}")
-            print(f"{level=}")
             result.extend(nested_result)
             result.append(f"{closing_bracket_str}")
 
