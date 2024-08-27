@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "hexlet-code"
 version = "0.1.0"
-description = ""
+description = "Программа позволяет пользователю получить различия двух json или yaml файлов, и вывести их на печать или в json формат."
 authors = ["AlloKuz <a.o.kuzmin.rus@gmail.com>"]
 readme = "README.md"
 packages = [{ include = "gendiff" }]
