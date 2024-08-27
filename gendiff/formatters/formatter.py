@@ -3,9 +3,7 @@ from gendiff.formatters import (json_formatter,
                                 stylish_formatter)
 
 
-def format_data(data, output_type="json", formatter=None):
-    if formatter:
-        return formatter(data)
+def format_data(data, output_type="json"):
     match output_type:
         case "json":
             return json_formatter(data)
