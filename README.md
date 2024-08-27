@@ -28,8 +28,4 @@ make gendiff
 
 ### Example:
 
-GENDIFF JSON-files
-<a href="https://asciinema.org/a/NBtm2YCBHJHmPN14D9nLHdIY6" target="_blank"><img src="https://asciinema.org/a/NBtm2YCBHJHmPN14D9nLHdIY6.svg" /></a>
-
-GENDIFF YAML-files
-<a href="https://asciinema.org/a/zHuC8WEEKv683EQxEuMSJ4Xfr" target="_blank"><img src="https://asciinema.org/a/zHuC8WEEKv683EQxEuMSJ4Xfr.svg" /></a>
+<a href="https://asciinema.org/a/sugv4onehOrZRP0OWerMCzkWN" target="_blank"><img src="https://asciinema.org/a/sugv4onehOrZRP0OWerMCzkWN.svg" /></a>

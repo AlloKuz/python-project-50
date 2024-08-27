@@ -69,8 +69,8 @@ def make_json_diff(data):
 
 def prepare_value(value, *, level=1):
     if isinstance(value, dict):
-
         result = [""]
+
         nested_result = []
         # prepare dict
         for key in value.keys():
