@@ -18,6 +18,9 @@ make gendiff
 
 # Аргументы командной строки
 
+`gendiff filepath1 filepath2 [-f json|plain|stylish]`
+
+Где:
 `filename{1,2}` -- пути до файлов
 
 `-f`/`--format` [json/plain/stylish] -- формат вывода различий
