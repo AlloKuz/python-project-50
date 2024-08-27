@@ -11,17 +11,21 @@ package-install:
 gendiff:
 	poetry run gendiff
 
-lint:
+# Dev
+dev:
+	poetry install --with dev
+
+lint: dev
 	poetry run flake8 gendiff
 
-test-coverage:
+test-coverage: dev
 	poetry run pytest --cov=gendiff --cov-report xml
 
-test:
-	poetry run pytest
-
-show-coverage:
+show-coverage: dev
 	poetry run pytest --cov=gendiff --cov-report term-missing
 
+test: dev
+	poetry run pytest
 
-.PHONY: install lint test publish gendiff
+
+.PHONY: install lint test publish gendiff dev
