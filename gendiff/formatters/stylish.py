@@ -28,7 +28,11 @@ def iter_(current_data, level=1, *, indent_symbol, indent_size, shift_size):
 
         if isinstance(current_data[key], dict):
 
-            nested_result = iter_(current_data[key], level + 1)
+            nested_result = iter_(current_data[key],
+                                  level + 1,
+                                  indent_symbol=indent_symbol,
+                                  indent_size=indent_size,
+                                  shift_size=shift_size)
             if nested_result:
                 result.extend(nested_result)
 
@@ -41,5 +45,8 @@ def format(data, raw=False, *,
            indent_symbol=" ", indent_size=4, shift_size=2):
     if raw:
         return data
-    result = iter_(data, indent_symbol, indent_size, shift_size)
+    result = iter_(data,
+                   indent_symbol=indent_symbol,
+                   indent_size=indent_size,
+                   shift_size=shift_size)
     return "{\n" + "\n".join(result) + "\n}" if result else ""
