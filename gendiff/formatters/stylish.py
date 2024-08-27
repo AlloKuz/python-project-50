@@ -1,3 +1,8 @@
+INDENT_SYMBOL = " "
+INDENT_SIZE = 4
+SHIFT_SIZE = 2
+
+
 def prepare_value(value):
     if isinstance(value, dict):
         return "{"
@@ -8,8 +13,8 @@ def prepare_value(value):
     return value
 
 
-def iter_(current_data, level=1, *, indent_symbol, indent_size, shift_size):
-    indent_size_counted = level * indent_size - shift_size
+def iter_(current_data, level=1):
+    indent_size_counted = level * INDENT_SIZE - SHIFT_SIZE
 
     if not isinstance(current_data, dict):
         return current_data
@@ -19,7 +24,7 @@ def iter_(current_data, level=1, *, indent_symbol, indent_size, shift_size):
 
     # prepare dict
     for key in current_data.keys():
-        indent = indent_size_counted * indent_symbol
+        indent = indent_size_counted * INDENT_SYMBOL
         key = key
         value = prepare_value(current_data[key])
 
@@ -29,24 +34,15 @@ def iter_(current_data, level=1, *, indent_symbol, indent_size, shift_size):
         if isinstance(current_data[key], dict):
 
             nested_result = iter_(current_data[key],
-                                  level + 1,
-                                  indent_symbol=indent_symbol,
-                                  indent_size=indent_size,
-                                  shift_size=shift_size)
+                                  level + 1)
             if nested_result:
                 result.extend(nested_result)
 
-            result.append(f"{indent}{shift_size * indent_symbol}}}")
+            result.append(f"{indent}{SHIFT_SIZE * INDENT_SYMBOL}}}")
 
     return result
 
 
-def format(data, raw=False, *,
-           indent_symbol=" ", indent_size=4, shift_size=2):
-    if raw:
-        return data
-    result = iter_(data,
-                   indent_symbol=indent_symbol,
-                   indent_size=indent_size,
-                   shift_size=shift_size)
+def format(data):
+    result = iter_(data)
     return "{\n" + "\n".join(result) + "\n}" if result else ""
