@@ -13,7 +13,7 @@ def transform_to_str(value):
 def format(data, raw=False):
     if not data:
         return data
-    
+
     def _iter(data, path=''):
         result = []
 
