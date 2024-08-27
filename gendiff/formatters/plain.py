@@ -10,7 +10,10 @@ def transform_to_str(value):
     return f"'{value}'"
 
 
-def _format_diff(data, raw=False):
+def format(data, raw=False):
+    if not data:
+        return data
+    
     def _iter(data, path=''):
         result = []
 
@@ -67,10 +70,5 @@ def _format_diff(data, raw=False):
 
     result_str = ""
     for el in result:
-        if el:
-            result_str += f"{el}\n"
+        result_str += f"{el}\n" if el else ""
     return result_str.rstrip()
-
-
-def format(data, raw=False):
-    return _format_diff(data, raw=raw) if data else data
