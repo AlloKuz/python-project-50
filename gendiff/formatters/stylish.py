@@ -26,6 +26,7 @@ def prepare_value(value, *, level=1):
             result.append(f"{closing_bracket_str}")
 
         return "\n".join(result)
+
     elif isinstance(value, bool):
         return str(value).lower()
     elif value is None:
