@@ -8,10 +8,10 @@ def generate_diff(file_path1,
                   output_type=None,
                   formatter=None):
 
-    file1_data = get_content(file_path1)
-    file2_data = get_content(file_path2)
+    content1 = get_content(file_path1)
+    content2 = get_content(file_path2)
 
-    result = format_data(make_diff(file1_data, file2_data),
+    result = format_data(make_diff(content1, content2),
                          output_type,
                          formatter)
     return result

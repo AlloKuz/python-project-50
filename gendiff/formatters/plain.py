@@ -63,8 +63,4 @@ def iter_recursive(data, path=''):
 def format(data):
     if not data:
         return data
-
-    result = iter_recursive(data)
-
-    result_str = "\n".join(result).strip()
-    return result_str
+    return '\n'.join(iter_recursive(data))

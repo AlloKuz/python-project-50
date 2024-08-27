@@ -1,4 +1,4 @@
-from gendiff.formatters.stylish import prepare_value, format
+from gendiff.formatters.stylish import prepare_value
 
 import pytest
 import json
@@ -25,15 +25,17 @@ def file1_2_nested_str():
     return data
 
 
-@pytest.mark.parametrize("test_input,expected", [({"name": "value"}, "{\n  name: value\n}"),                                                 (True, "true"),
-                                                 (False, "false"),
-                                                 (None, "null"),
-                                                 ({}, "")])
+@pytest.mark.parametrize("test_input,expected",
+                         [({"name": "value"}, "{\n  name: value\n}"),
+                          (True, "true"),
+                          (False, "false"),
+                          (None, "null"),
+                          ({}, "")])
 def test_prepare_value(test_input, expected):
     assert prepare_value(test_input) == expected
 
 
-def test_format(file1_2_nested_result, file1_2_nested_str):
+def test_prepare_value_data(file1_2_nested_result, file1_2_nested_str):
     data = file1_2_nested_result
     result = file1_2_nested_str
-    assert format(data) == result
+    assert prepare_value(data) == result

@@ -1,3 +1,6 @@
+from .utils.make_json_diff import make_json_diff
+
+
 INDENT_SYMBOL = " "
 INDENT_SIZE = 4
 SHIFT_SIZE = 2
@@ -33,6 +36,5 @@ def prepare_value(value, *, level=1):
 
 
 def format(data):
-    result = prepare_value(data)
+    result = prepare_value(make_json_diff(data))
     return result
-    return "{\n" + "\n".join(result) + "\n}" if result else ""
