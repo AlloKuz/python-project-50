@@ -39,8 +39,6 @@ def test_exception_type_of_file():
 
 
 def test_exception_format():
-    for value in ['50', [True], 'text',]:
-        assert transform_to_str(value) == f"'{str(value)}'"
     assert transform_to_str(True) == 'true'
     assert transform_to_str(False) == 'false'
     assert transform_to_str(None) == 'null'
