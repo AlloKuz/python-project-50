@@ -2,26 +2,26 @@ from gendiff import generate_diff
 
 import pytest
 
-FIX_DIR = "tests/fixtures"
+FIXTURES_PATH = "tests/fixtures"
 
 
 @pytest.mark.parametrize("file1, file2, expected_path, output_type", [
     (
-        f"{FIX_DIR}/file1_nested.yaml",
-        f"{FIX_DIR}/file2_nested.yaml",
-        f"{FIX_DIR}/file1_2_plain.txt",
+        f"{FIXTURES_PATH}/file1_nested.yaml",
+        f"{FIXTURES_PATH}/file2_nested.yaml",
+        f"{FIXTURES_PATH}/file1_2_plain.txt",
         "plain"
     ),
     (
-        f"{FIX_DIR}/file1_nested.json",
-        f"{FIX_DIR}/file2_nested.yaml",
-        f"{FIX_DIR}/file1_2_json.txt",
+        f"{FIXTURES_PATH}/file1_nested.json",
+        f"{FIXTURES_PATH}/file2_nested.yaml",
+        f"{FIXTURES_PATH}/file1_2_json.txt",
         "json"
     ),
     (
-        f"{FIX_DIR}/file1_nested.yaml",
-        f"{FIX_DIR}/file2_nested.yaml",
-        f"{FIX_DIR}/file1_2_stylish.txt",
+        f"{FIXTURES_PATH}/file1_nested.yaml",
+        f"{FIXTURES_PATH}/file2_nested.yaml",
+        f"{FIXTURES_PATH}/file1_2_stylish.txt",
         "stylish"
     ),
 ])
