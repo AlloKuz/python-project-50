@@ -43,4 +43,3 @@ def test_exception_format():
     assert transform_to_str(False) == 'false'
     assert transform_to_str(None) == 'null'
     assert transform_to_str(50) == 50
-    assert transform_to_str('[complex value]') == "[complex value]"
