@@ -26,6 +26,7 @@ FIXTURES_PATH = "tests/fixtures"
         f"{FIXTURES_PATH}/file1_2_stylish.txt",
         "stylish"
     ),
+
 ])
 def test_gen_diff_output(file1, file2, expected_path, output_type):
     with open(expected_path) as f:
@@ -34,5 +35,5 @@ def test_gen_diff_output(file1, file2, expected_path, output_type):
 
 def test_exception_type_of_file():
     assert parse(
-        '{FIXTURES_PATH}/json_difference_for_test_data.txt'
+        '{FIXTURES_PATH}/file1_2_json.txt'
     ) == {"Wrong format! Needs: json/yaml file!"}
