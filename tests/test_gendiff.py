@@ -1,4 +1,6 @@
 from gendiff import generate_diff
+from gendiff.parser import parse
+from gendiff.formatters.plain import transform_to_str
 
 import pytest
 
@@ -28,3 +30,9 @@ FIXTURES_PATH = "tests/fixtures"
 def test_gen_diff_output(file1, file2, expected_path, output_type):
     with open(expected_path) as f:
         assert generate_diff(file1, file2, output_type=output_type) == f.read()
+
+
+def test_exception_type_of_file():
+    assert parse(
+        '{FIXTURES_PATH}/json_difference_for_test_data.txt'
+    ) == {"Wrong format! Needs: json/yaml file!"}
