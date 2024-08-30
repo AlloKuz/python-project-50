@@ -1,5 +1,5 @@
 from gendiff import generate_diff
-from parser import parse
+from gendiff.parser import parse
 from gendiff.formatters.plain import transform_to_str
 
 import pytest
