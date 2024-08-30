@@ -1,6 +1,6 @@
 from gendiff.parser import get_content
 from gendiff.diff_maker import make_diff
-from gendiff.__init__ import format_data
+from gendiff.formatters.__init__ import format_data
 
 
 def generate_diff(file_path1,
