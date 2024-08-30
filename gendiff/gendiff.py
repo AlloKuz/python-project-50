@@ -7,6 +7,10 @@ def generate_diff(file_path1,
                   file_path2,
                   output_type=None):
 
+    """
+    Calculates the difference between files, formats it
+    and returns the result.
+    """
     content1 = get_content(file_path1)
     content2 = get_content(file_path2)
 

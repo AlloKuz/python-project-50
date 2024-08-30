@@ -4,6 +4,9 @@ from gendiff.formatters import (json_formatter,
 
 
 def format_data(data, output_type="json"):
+    """
+    Formats data according to the selected formatting type.
+    """
     match output_type:
         case "json":
             return json_formatter(data)

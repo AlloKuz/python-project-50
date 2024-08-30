@@ -8,10 +8,18 @@ SHIFT_SIZE = 2
 
 
 def _get_item_name(name, *, prefix=PREFIX_NONE):
+    """
+    Return text that consists of the value prefix,
+    space, and value name.
+    """
     return f"{prefix} {name}"
 
 
 def add_prefixes_recursive(data):
+    """
+    Converts it into a new dictionary with new key names
+    and processes the values ​​of those keys.
+    """
     if isinstance(data, dict):
         new_dict = dict()
         for k in data.keys():
@@ -22,10 +30,17 @@ def add_prefixes_recursive(data):
 
 
 def _sort_key(data):
+    """
+    Return a tuple of the name and status of the data element.
+    """
     return data['name'], (0 if data['state'] == "removed" else 1)
 
 
 def make_json_diff(data):
+    """
+    Sorts, then processes each element depending on its state
+    and adds it to the dictionary.
+    """
 
     result = {}
 
@@ -68,6 +83,10 @@ def make_json_diff(data):
 
 
 def prepare_value(value, *, level=1):
+    """
+    Converts value to JSON format, processing nested dictionaries
+    and modifying boolean values.
+    """
     if isinstance(value, dict):
         result = [""]
 
@@ -97,5 +116,8 @@ def prepare_value(value, *, level=1):
 
 
 def format(data):
+    """
+    Return result obtained after converting data to JSON format
+    """
     result = prepare_value(make_json_diff(data))
     return result

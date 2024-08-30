@@ -1,4 +1,7 @@
 def transform_to_str(value):
+    """
+    Returns a variable after handling an exception.
+    """
     if isinstance(value, (dict, list)):
         return "[complex value]"
     elif isinstance(value, bool):
@@ -11,6 +14,11 @@ def transform_to_str(value):
 
 
 def iter_recursive(data, path=''):
+    """
+    Through all data elements, determines their state and generates a string.
+    Function calls itself recursively to process the nested data.
+    At the end, the function sorts all the rows and returns them as a list.
+    """
     result = []
 
     templates_dict = {
@@ -61,6 +69,9 @@ def iter_recursive(data, path=''):
 
 
 def format(data):
+    """
+    Converts data to a list of strings.
+    """
     if not data:
         return data
     return '\n'.join(iter_recursive(data))

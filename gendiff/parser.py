@@ -4,6 +4,10 @@ import os
 
 
 def parse(data, format="json"):
+    """
+    Attempts to load data depending on the format.
+    If the format is incorrect, the function raises an exception.
+    """
     if format == "json":
         return json.loads(data)
     elif format in ("yml", "yaml"):
@@ -12,6 +16,10 @@ def parse(data, format="json"):
 
 
 def get_content(filename):
+    """
+    Reads the contents of the file and returns the loaded data,
+    using the file extension to determine the format.
+    """
 
     with open(filename) as f:
 

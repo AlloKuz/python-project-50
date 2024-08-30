@@ -2,6 +2,10 @@ import argparse
 
 
 def parse_args():
+    """
+    Creates an argument parser instance with options
+    for two files and an output format.
+    """
     parser = argparse.ArgumentParser(
         prog="gendiff",
         description="Compares two configuration files and shows a difference.")

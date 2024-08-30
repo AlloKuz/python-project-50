@@ -1,10 +1,18 @@
 def _prepare_data_item(name, state, value, is_nested=False):
+    """
+    Creates a dictionary with the keys "name",
+    "state" and "value" or "children"
+    """
     return {"name": name,
             "state": state,
             "children" if is_nested else "value": value}
 
 
 def make_diff(data1, data2):
+    """
+    Compares two dictionaries data1 and data2,
+    identifying added, deleted and modified keys.
+    """
 
     result_data = []
 
